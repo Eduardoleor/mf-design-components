@@ -50,25 +50,25 @@ For an example of how to use `mf-design-components` in a Next.js project, check 
 
 A customizable button component with various styles and sizes.
 
-![Button Component](examples/button.png)
+![Button Component](https://raw.githubusercontent.com/Eduardoleor/mf-design-components/main/assets/button.png)
 
 ### [Dropdown](src/components/Dropdown/README.md)
 
 A versatile dropdown component with support for sorting, searching, and custom icons.
 
-![Dropdown Component](examples/dropdown.png)
+![Dropdown Component](https://raw.githubusercontent.com/Eduardoleor/mf-design-components/main/assets/dropdown.png)
 
 ### [Input](src/components/Input/README.md)
 
 A customizable input with variants to support different types.
 
-![Input Component](examples/input.png)
+![Input Component](https://raw.githubusercontent.com/Eduardoleor/mf-design-components/main/assets/input.png)
 
 ### [Text](src/components/Text/README.md)
 
 A customizable text with based in `<p/>` tag.
 
-![Text Component](examples/text.png)
+![Text Component](https://raw.githubusercontent.com/Eduardoleor/mf-design-components/main/assets/text.png)
 
 ## NPM Package
 
@@ -184,56 +184,7 @@ To ensure code quality, we use ESLint and Prettier. To lint and format your code
 
 ### Deployment Flowchart
 
-```plaintext
-+------------------------+
-| Start                  |
-+------------------------+
-           |
-           v
-+------------------------+
-| Code Check Out         |
-+------------------------+
-           |
-           v
-+------------------------+
-| Set up Node.js         |
-+------------------------+
-           |
-           v
-+------------------------+
-| Install Dependencies   |
-+------------------------+
-           |
-           v
-+------------------------+
-| Run Tests              |
-+------------------------+
-           |
-           v
-+------------------------+
-| Build Project          |
-+------------------------+
-           |
-           v
-+------------------------+
-| Build Storybook        |
-+------------------------+
-           |
-           v
-+------------------------+
-| Deploy to NPM          |
-+------------------------+
-           |
-           v
-+------------------------+
-| Deploy to GitHub Pages |
-+------------------------+
-           |
-           v
-+------------------------+
-| End                    |
-+------------------------+
-```
+![Deployment Flowchart](https://raw.githubusercontent.com/Eduardoleor/mf-design-components/main/assets/diagram.png)
 
 ### Explanation
 
