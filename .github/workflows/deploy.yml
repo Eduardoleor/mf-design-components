@@ -65,6 +65,9 @@ jobs:
       - name: Install dependencies
         run: yarn install
 
+      - name: Build project
+        run: yarn build
+
       - name: Publish package to NPM
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
