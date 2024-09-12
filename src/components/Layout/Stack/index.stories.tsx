@@ -1,13 +1,14 @@
-import type { Meta, StoryObj } from "@storybook/react";
-import { Stack } from ".";
-import { Box } from "..";
+import type { Meta, StoryObj } from '@storybook/react';
+import { Stack } from '.';
+import { Box } from '..';
 
 const meta: Meta<typeof Stack> = {
-  title: "Layout/Stack",
+  title: 'Layout/Stack',
   component: Stack,
   parameters: {
-    layout: "centered",
+    layout: 'centered',
   },
+  tags: ['autodocs'],
 };
 
 export default meta;
