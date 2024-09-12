@@ -1,0 +1,112 @@
+name: CI - Build, Test, and Deploy
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+jobs:
+  # Step 1: Run tests and build the project
+  build_and_test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Log - Code checked out
+        run: echo "✅ Code checked out."
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18.x
+      - name: Log - Node.js setup complete
+        run: echo "⚙️ Node.js version 18.x setup complete."
+
+      - name: Install dependencies
+        run: yarn install
+      - name: Log - Dependencies installed
+        run: echo "🦾 Dependencies installed."
+
+      - name: Run tests
+        run: yarn test
+      - name: Log - Tests passed
+        run: echo "🧪 All tests passed successfully."
+
+      - name: Build project
+        run: yarn build
+      - name: Log - Build completed
+        run: echo "⚒️ Project built successfully."
+
+      - name: Build Storybook
+        run: yarn build-storybook
+      - name: Log - Storybook build completed
+        run: echo "🚦 Storybook built successfully."
+
+  # Step 2: Deploy to NPM (only if build_and_test passes)
+  deploy_npm:
+    needs: build_and_test
+    runs-on: ubuntu-latest
+    if: success() # Deploy to NPM only if the build and tests are successful
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18.x
+
+      - name: Install dependencies
+        run: yarn install
+
+      - name: Publish package to NPM
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+        run: |
+          echo "//registry.npmjs.org/:_authToken=\${NODE_AUTH_TOKEN}" > .npmrc
+          npm publish
+      - name: Log - NPM package published
+        run: echo "🚀 Package published to NPM."
+
+  # Step 3: Deploy to GitHub Pages (only if build_and_test passes)
+  deploy_github_pages:
+    needs: build_and_test
+    runs-on: ubuntu-latest
+    if: success() # Deploy to GitHub Pages only if the build and tests are successful
+
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Install dependencies
+        run: yarn install
+
+      - name: Build Storybook
+        run: yarn build-storybook
+
+      - name: Validate Storybook Build
+        run: test -d ./storybook-static && echo "✅ Storybook build validation successful." || (echo "❌ Storybook build validation failed." && exit 1)
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v3
+
+      - name: Upload Storybook artifact
+        uses: actions/upload-pages-artifact@v2
+        with:
+          path: './storybook-static'
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v2
+      - name: Log - GitHub Pages deployed
+        run: echo "🚀 GitHub Pages deployment complete."
