@@ -1,12 +1,13 @@
-import type { Meta, StoryObj } from "@storybook/react";
-import { LoginForm } from ".";
+import type { Meta, StoryObj } from '@storybook/react';
+import { LoginForm } from '.';
 
 const meta: Meta<typeof LoginForm> = {
-  title: "Examples/Form",
+  title: 'Examples/Form',
   component: LoginForm,
   parameters: {
-    layout: "centered",
+    layout: 'centered',
   },
+  tags: ['autodocs'],
 };
 
 export default meta;
