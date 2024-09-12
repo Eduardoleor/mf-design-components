@@ -36,6 +36,10 @@ or
 yarn add mf-design-components
 ```
 
+## Storybook
+
+You can explore and test all components in the [Storybook documentation](https://eduardoleor.github.io/mf-design-components/).
+
 ## Next.js Project Using `mf-design-components`
 
 For an example of how to use `mf-design-components` in a Next.js project, check out the [mf-frontend repository](https://github.com/Eduardoleor/mf-frontend).
